@@ -5,6 +5,8 @@ import Link from "next/link"
 import SearchBar from "./Search"
 import NavLink from "./NavLink"
 
+import { Web3Button } from "./Web3Button"
+
 export default function Header () {
     return (
         <header className="bg-hedgen-900/70 border-b border-hedgen-200/30 py-2 sticky top-0 z-30 w-full shadow-lg backdrop-blur-md">
@@ -17,7 +19,7 @@ export default function Header () {
                     <NavLink href={`/wallet`} active={true}>Wallet</NavLink>
                     <NavLink href={`/defi`}>DeFi</NavLink>
                     <NavLink href={`/nft`}>NFT</NavLink>
-                    <NavLink href={`/`} primary={true}>Sign In</NavLink>
+                    <Web3Button />
                 </nav>
             </div>
         </header>
