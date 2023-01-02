@@ -1,4 +1,5 @@
 
+import Link from 'next/link'
 import React from 'react'
 import { useWeb3Context } from '../contexts/Web3'
 import { useWeb3 } from '../hooks/Web3'
@@ -20,6 +21,6 @@ export function Web3Button () {
     console.log(web3Provider)
     
     return web3Provider
-        ? <CustomButton onClick={disconnect}>{ address?.slice(-5) }</CustomButton>
+        ? <Link href={`/wallet/${address}`}>Account</Link>
         : <CustomButton onClick={connect}>Sign In</CustomButton>
 }

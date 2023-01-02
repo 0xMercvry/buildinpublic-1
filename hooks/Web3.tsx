@@ -1,6 +1,8 @@
 import { useEffect, useReducer, useCallback } from "react"
 import { ethers } from "ethers"
 
+import { useRouter } from "next/router"
+
 import {
     Web3ProviderState,
     Web3Action,
@@ -35,6 +37,7 @@ type Web3Client = Web3ProviderState & {
 }
 
 export const useWeb3 = () => {
+    const router = useRouter()
     const [state, dispatch] = useReducer(web3Reducer, web3InitialState)
     const { provider, web3Provider, address, network } = state
 
@@ -54,7 +57,7 @@ export const useWeb3 = () => {
                     address,
                     network
                 } as Web3Action)
-
+                
             } catch (e) {
                 console.log(`connect error: `, e)
             }
