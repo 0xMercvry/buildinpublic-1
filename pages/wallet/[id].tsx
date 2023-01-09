@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import Avatar from "../../components/Avatar"
 import ChainPill from "../../components/ChainPill"
 import Tile from "../../components/Tile"
-import { useWeb3Context } from "../../contexts/Web3"
 
 import { providers, utils } from "ethers"
 import { useRouter } from 'next/router'
@@ -37,6 +36,7 @@ const activity = Array.from({ length: 30 }, () => {
 })
 
 export default function WalletDetailPage ()  {
+  const [tags, setTags] = useState([])
   const router = useRouter()
 
   const address = router.query.id
@@ -90,7 +90,7 @@ export default function WalletDetailPage ()  {
 
       <div>
         <Tile title="Last activity" className="mt-6">
-          <LastActivity data={activity} />
+          <LastActivity data={activity} address={address} />
         </Tile>
       </div>
 
@@ -98,7 +98,7 @@ export default function WalletDetailPage ()  {
         <div className="w-2/3 pr-4">
           
           <Tile title="Wallet" className="mt-10">
-              <Wallet data={sample_assets} />
+              <Wallet data={sample_assets} address={address} />
           </Tile>
 
           <Tile title="Transaction history" className="mt-10"></Tile>

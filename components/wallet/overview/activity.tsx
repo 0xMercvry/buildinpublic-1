@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+import { useEffect } from 'react';
 import {
     BarChart,
     Bar,
@@ -10,7 +12,23 @@ import {
     ResponsiveContainer
 } from 'recharts';
 
-export default function LastActivity ({ data }: any) {
+export default function LastActivity ({ data, address }: any) {
+
+    const loadData = async () => {
+        try {
+        const etherscan = new ethers.providers.EtherscanProvider()
+
+        const history = await etherscan.getHistory(address)
+        console.log(history)
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+    useEffect(() => {
+        loadData()
+    }, [])
+
     return (
         <ResponsiveContainer width="100%" height="100%">
             <BarChart
